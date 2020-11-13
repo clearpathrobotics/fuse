@@ -81,6 +81,14 @@ public:
     fuse_core::Transaction::ConstSharedPtr transaction,
     fuse_core::Graph::ConstSharedPtr graph) override;
 
+  /**
+   * @brief Perform any required operations to prepare for servicing calls to notify()
+   *
+   * This function will be called once after initialize() but before any calls to notify(). It may also be called
+   * at any time after a call to stop().
+   */
+  void onStart() override;
+
 protected:
   /**
    * @brief Publish the serialized graph

@@ -44,6 +44,8 @@
 #include <pluginlib/class_list_macros.h>
 #include <ros/ros.h>
 
+#include <cpr_scalopus/common.h>
+
 
 // Register this publisher with ROS as a plugin.
 PLUGINLIB_EXPORT_CLASS(fuse_publishers::SerializedPublisher, fuse_core::Publisher);
@@ -81,10 +83,17 @@ void SerializedPublisher::onInit()
   transaction_publisher_ = private_node_handle_.advertise<fuse_msgs::SerializedTransaction>("transaction", 1, latch);
 }
 
+void SerializedPublisher::onStart()
+{
+  TRACE_THREAD_NAME(name_ + " Spinner");
+}
+
 void SerializedPublisher::notifyCallback(
   fuse_core::Transaction::ConstSharedPtr transaction,
   fuse_core::Graph::ConstSharedPtr graph)
 {
+  TRACE_PRETTY_FUNCTION();
+
   const auto& stamp = transaction->stamp();
   if (graph_publisher_.getNumSubscribers() > 0)
   {
