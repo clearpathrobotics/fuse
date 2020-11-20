@@ -105,6 +105,8 @@ void HashGraph::clear()
 
 fuse_core::Graph::UniquePtr HashGraph::clone() const
 {
+  TRACE_PRETTY_FUNCTION();
+
   return HashGraph::make_unique(*this);
 }
 
