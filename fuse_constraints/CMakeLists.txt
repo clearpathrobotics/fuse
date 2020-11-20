@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(fuse_constraints)
 
 set(build_depends
+  cpr_scalopus
   fuse_core
   fuse_graphs
   fuse_variables

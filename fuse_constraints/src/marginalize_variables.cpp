@@ -43,6 +43,8 @@
 #include <Eigen/Dense>
 #include <suitesparse/ccolamd.h>
 
+#include <cpr_scalopus/common.h>
+
 #include <algorithm>
 #include <iterator>
 #include <numeric>
@@ -60,6 +62,8 @@ UuidOrdering computeEliminationOrder(
   const std::vector<fuse_core::UUID>& marginalized_variables,
   const fuse_core::Graph& graph)
 {
+  TRACE_PRETTY_FUNCTION();
+
   // COLAMD wants a somewhat weird structure
   // Variables are numbered sequentially in some arbitrary order. We call this the "variable index" order.
   // Similarly, the Constraints are numbered sequentially. We call this the "constraint index" order.
@@ -180,6 +184,8 @@ fuse_core::Transaction marginalizeVariables(
   const fuse_core::Graph& graph,
   const fuse_constraints::UuidOrdering& elimination_order)
 {
+  TRACE_PRETTY_FUNCTION();
+
   assert(std::all_of(marginalized_variables.begin(),
                      marginalized_variables.end(),
                      [&elimination_order, &marginalized_variables](const fuse_core::UUID& variable_uuid)
