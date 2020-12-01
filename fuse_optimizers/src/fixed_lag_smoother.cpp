@@ -40,6 +40,8 @@
 #include <fuse_optimizers/optimizer.h>
 #include <ros/ros.h>
 
+#include <geometry_msgs/PointStamped.h>
+
 #include <cpr_scalopus/common.h>
 
 #include <algorithm>
@@ -93,6 +95,8 @@ FixedLagSmoother::FixedLagSmoother(
 
   // Test for auto-start
   autostart();
+
+  publisher_ = node_handle_.advertise<geometry_msgs::PointStamped>("optime_timer_delay", 10);
 
   // Start the optimization thread
   optimization_thread_ = std::thread(&FixedLagSmoother::optimizationLoop, this);
@@ -248,6 +252,12 @@ void FixedLagSmoother::optimizationLoop()
 
 void FixedLagSmoother::optimizerTimerCallback(const ros::TimerEvent& event)
 {
+  geometry_msgs::PointStamped msg;
+  msg.header.stamp = event.current_real;
+  msg.point.x = event.current_real.toSec();
+  msg.point.y = event.current_expected.toSec();
+  msg.point.z = (event.current_real - event.current_expected).toSec();
+
   // If an "ignition" transaction hasn't been received, then we can't do anything yet.
   if (!started_)
   {
