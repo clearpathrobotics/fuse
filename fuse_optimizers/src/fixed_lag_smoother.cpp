@@ -154,6 +154,7 @@ ros::Time FixedLagSmoother::computeLagExpirationTime() const
 
 std::vector<fuse_core::UUID> FixedLagSmoother::computeVariablesToMarginalize(const ros::Time& lag_expiration)
 {
+  TRACE_PRETTY_FUNCTION();
   auto marginalize_variable_uuids = std::vector<fuse_core::UUID>();
   timestamp_tracking_.query(lag_expiration, std::back_inserter(marginalize_variable_uuids));
   return marginalize_variable_uuids;

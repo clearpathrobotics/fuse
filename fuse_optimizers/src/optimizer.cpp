@@ -383,6 +383,7 @@ void Optimizer::notify(
   fuse_core::Transaction::ConstSharedPtr transaction,
   fuse_core::Graph::ConstSharedPtr graph)
 {
+  TRACE_PRETTY_FUNCTION();
   for (const auto& name__sensor_model : sensor_models_)
   {
     try
