@@ -241,6 +241,8 @@ void FixedLagSmoother::optimizationLoop()
       auto optimization_complete = ros::Time::now();
       if (optimization_complete > optimization_deadline)
       {
+        TRACE_MARK_EVENT_THREAD("Optimization exceeded the configured duration.");
+
         ROS_WARN_STREAM_THROTTLE(10.0, "Optimization exceeded the configured duration by "
                                            << (optimization_complete - optimization_deadline) << "s");
       }
@@ -252,6 +254,7 @@ void FixedLagSmoother::optimizationLoop()
 
 void FixedLagSmoother::optimizerTimerCallback(const ros::TimerEvent& event)
 {
+  TRACE_PRETTY_FUNCTION();
   geometry_msgs::PointStamped msg;
   msg.header.stamp = event.current_real;
   msg.point.x = event.current_real.toSec();
@@ -272,6 +275,7 @@ void FixedLagSmoother::optimizerTimerCallback(const ros::TimerEvent& event)
   }
   if (optimization_request_)
   {
+    TRACE_SCOPE_RAII("Optimization request");
     {
       std::lock_guard<std::mutex> lock(optimization_requested_mutex_);
       optimization_deadline_ = event.current_expected + params_.optimization_period;
@@ -454,6 +458,8 @@ void FixedLagSmoother::transactionCallback(
   const std::string& sensor_name,
   fuse_core::Transaction::SharedPtr transaction)
 {
+  TRACE_PRETTY_FUNCTION();
+
   // If this transaction occurs before the start time, just ignore it
   auto start_time = getStartTime();
   const auto max_time = transaction->maxStamp();
