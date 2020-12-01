@@ -260,6 +260,7 @@ void FixedLagSmoother::optimizerTimerCallback(const ros::TimerEvent& event)
   msg.point.x = event.current_real.toSec();
   msg.point.y = event.current_expected.toSec();
   msg.point.z = (event.current_real - event.current_expected).toSec();
+  publisher_.publish(msg);
 
   // If an "ignition" transaction hasn't been received, then we can't do anything yet.
   if (!started_)
