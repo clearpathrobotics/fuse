@@ -51,7 +51,7 @@ namespace fuse_models
 Acceleration2D::Acceleration2D() :
   fuse_core::AsyncSensorModel(1),
   device_id_(fuse_core::uuid::NIL),
-  tf_listener_(tf_buffer_),
+  tf_listener_(tf_buffer_, false),
   throttled_callback_(std::bind(&Acceleration2D::process, this, std::placeholders::_1))
 {
 }

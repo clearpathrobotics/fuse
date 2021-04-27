@@ -83,7 +83,7 @@ void Odometry2DPublisher::onInit()
   if (!params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
   {
     tf_buffer_ = std::make_unique<tf2_ros::Buffer>(params_.tf_cache_time);
-    tf_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf_buffer_, node_handle_);
+    tf_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf_buffer_, node_handle_, false);
   }
 
   odom_pub_ = node_handle_.advertise<nav_msgs::Odometry>(ros::names::resolve(params_.topic), params_.queue_size);

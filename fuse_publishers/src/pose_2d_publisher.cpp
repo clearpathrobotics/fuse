@@ -153,7 +153,7 @@ void Pose2DPublisher::onInit()
       tf_timeout_ = ros::Duration(tf_timeout);
 
       tf_buffer_ = std::make_unique<tf2_ros::Buffer>(ros::Duration(tf_cache_time));
-      tf_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf_buffer_, node_handle_);
+      tf_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf_buffer_, node_handle_, false);
     }
 
     double tf_publish_frequency;
