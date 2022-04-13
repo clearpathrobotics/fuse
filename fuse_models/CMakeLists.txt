@@ -12,6 +12,7 @@ find_package(
     fuse_publishers
     fuse_variables
     geometry_msgs
+    imu_transformer
     message_generation
     nav_msgs
     pluginlib
