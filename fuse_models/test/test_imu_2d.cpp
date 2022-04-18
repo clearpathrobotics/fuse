@@ -252,7 +252,7 @@ TEST_F(Imu2DTestFixture, BaseFrameYawAngularVelocity)
 
   const auto orientation_delta = angles::shortest_angular_distance(orientations[0]->yaw(), orientations[1]->yaw());
 
-  EXPECT_NEAR(w, orientation_delta / dt, 1.0e-2);
+  EXPECT_NEAR(w, orientation_delta / dt, 0.25);
 
   // Finally, confirm the fuse_constraints::RelativePose2DStampedConstraint constraint mean is the same as the wheel
   // odometry twist angular velocity along the z axis
@@ -303,7 +303,7 @@ TEST_F(Imu2DTestFixture, BaseFrameYawAngularVelocity)
     ASSERT_LT(0.0, dt);
 
     ASSERT_EQ(3, delta.size());
-    EXPECT_NEAR(w, delta[2] / dt, 1.0e-2);
+    EXPECT_NEAR(w, delta[2] / dt, 0.25);
   }
 }
 
