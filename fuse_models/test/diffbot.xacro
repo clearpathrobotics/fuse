@@ -93,6 +93,16 @@
     </plugin>
   </gazebo>
 
+  <!-- ground truth plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_p3d" filename="libgazebo_ros_p3d.so">
+      <bodyName>base_link</bodyName>
+      <topicName>ground_truth_odom</topicName>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+    </plugin>
+  </gazebo>
+
   <!-- Colour -->
   <gazebo reference="base_link">
     <material>Gazebo/Green</material>

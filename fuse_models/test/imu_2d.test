@@ -6,5 +6,7 @@
   <rosparam file="$(find fuse_models)/test/imu.yaml" command="load" ns="imu_2d_test"/>
 
   <!-- Run test -->
-  <test test-name="imu_2d_test" pkg="fuse_models" type="test_imu_2d" time-limit="120"/>
+  <test test-name="imu_2d_test" pkg="fuse_models" type="test_imu_2d" time-limit="120">
+    <remap from="odom" to="/ground_truth_odom"/>
+  </test>
 </launch>

@@ -59,7 +59,7 @@ public:
   Imu2DTestFixture()
   {
     cmd_vel_publisher_ = node_handle_.advertise<geometry_msgs::Twist>("/diffbot_controller/cmd_vel", 10);
-    odom_subscriber_ = node_handle_.subscribe("/diffbot_controller/odom", 10, &Imu2DTestFixture::odomCallback, this);
+    odom_subscriber_ = node_handle_.subscribe("odom", 10, &Imu2DTestFixture::odomCallback, this);
 
     cmd_vel_timer_ = node_handle_.createTimer(ros::Duration(0.1), &Imu2DTestFixture::cmdVelTimerCallback, this);
   }
