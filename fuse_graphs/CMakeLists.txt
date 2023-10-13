@@ -62,6 +62,9 @@ add_dependencies(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     include
+)
+target_include_directories(${PROJECT_NAME}
+  SYSTEM PUBLIC
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     ${CERES_INCLUDE_DIRS}
@@ -120,6 +123,9 @@ if(CATKIN_ENABLE_TESTING)
   target_include_directories(test_hash_graph
     PRIVATE
       include
+  )
+  target_include_directories(test_hash_graph
+    SYSTEM PRIVATE
       ${Boost_INCLUDE_DIRS}
       ${catkin_INCLUDE_DIRS}
       ${CERES_INCLUDE_DIRS}
