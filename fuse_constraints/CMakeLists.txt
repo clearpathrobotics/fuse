@@ -71,7 +71,11 @@ catkin_package(
 # include/eigen3/Eigen/src/Core/AssignEvaluator.h:850:41: note: at offset [0, 16] into object ‘tmp’ of size 24
 #   850 |   typename plain_matrix_type<Src>::type tmp(src);
 #       |                                         ^~~
-add_compile_options(-Wall -Werror -Wno-array-bounds)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 12.0)
+  add_compile_options(-Wall -Werror -Wno-array-bounds)
+else()
+  add_compile_options(-Wall -Werror)
+endif()
 
 # fuse_constraints library
 add_library(${PROJECT_NAME}
