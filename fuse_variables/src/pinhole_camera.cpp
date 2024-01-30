@@ -1,7 +1,10 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2019, Locus Robotics
+ *  Author:    Oscar Mendez
+ *  Created:   11.13.2023
+ *
+ *  Copyright (c) 2023, Locus Robotics
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -31,47 +34,54 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <fuse_variables/orientation_2d_stamped.h>
+#include <fuse_variables/pinhole_camera.h>
 
-#include <fuse_core/local_parameterization.h>
 #include <fuse_core/uuid.h>
+#include <fuse_core/variable.h>
 #include <fuse_variables/fixed_size_variable.h>
-#include <fuse_variables/stamped.h>
 #include <pluginlib/class_list_macros.hpp>
-#include <ros/time.h>
 
 #include <boost/serialization/export.hpp>
 
 #include <ostream>
 
-
 namespace fuse_variables
 {
-
-Orientation2DStamped::Orientation2DStamped(const ros::Time& stamp, const fuse_core::UUID& device_id) :
-  FixedSizeVariable(fuse_core::uuid::generate(detail::type(), stamp, device_id)),
-  Stamped(stamp, device_id)
+PinholeCamera::PinholeCamera(const fuse_core::UUID& uuid, const uint64_t& camera_id)
+  : FixedSizeVariable(uuid), id_(camera_id)
 {
 }
 
-void Orientation2DStamped::print(std::ostream& stream) const
+PinholeCamera::PinholeCamera(const uint64_t& camera_id)
+  : PinholeCamera(fuse_core::uuid::generate(detail::type(), camera_id), camera_id)
+{
+}
+
+PinholeCamera::PinholeCamera(const fuse_core::UUID& uuid, const uint64_t& camera_id,
+                              const double& fx, const double& fy,
+                              const double& cx, const double& cy)
+  : PinholeCamera(fuse_core::uuid::generate(detail::type(), camera_id), camera_id)
+{
+  data_[FX] = fx;
+  data_[FY] = fy;
+  data_[CX] = cx;
+  data_[CY] = cy;
+}
+
+void PinholeCamera::print(std::ostream& stream) const
 {
   stream << type() << ":\n"
          << "  uuid: " << uuid() << "\n"
-         << "  stamp: " << stamp() << "\n"
-         << "  device_id: " << deviceId() << "\n"
          << "  size: " << size() << "\n"
+         << "  landmark id: " << id() << "\n"
          << "  data:\n"
-         << "  - yaw: " << getYaw() << "\n";
-}
-
-fuse_core::LocalParameterization* Orientation2DStamped::localParameterization() const
-{
-  return new Orientation2DLocalParameterization();
+         << "  - cx: " << cx() << "\n"
+         << "  - cy: " << cy() << "\n"
+         << "  - fx: " << fx() << "\n"
+         << "  - fy: " << fy() << "\n";
 }
 
 }  // namespace fuse_variables
 
-BOOST_CLASS_EXPORT_IMPLEMENT(fuse_variables::Orientation2DLocalParameterization);
-BOOST_CLASS_EXPORT_IMPLEMENT(fuse_variables::Orientation2DStamped);
-PLUGINLIB_EXPORT_CLASS(fuse_variables::Orientation2DStamped, fuse_core::Variable);
+BOOST_CLASS_EXPORT_IMPLEMENT(fuse_variables::PinholeCamera);
+PLUGINLIB_EXPORT_CLASS(fuse_variables::PinholeCamera, fuse_core::Variable);

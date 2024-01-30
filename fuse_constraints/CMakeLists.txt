@@ -44,6 +44,7 @@ add_library(${PROJECT_NAME}
   src/absolute_orientation_3d_stamped_euler_constraint.cpp
   src/absolute_pose_2d_stamped_constraint.cpp
   src/absolute_pose_3d_stamped_constraint.cpp
+  src/fixed_3d_landmark_constraint.cpp
   src/marginal_constraint.cpp
   src/marginal_cost_function.cpp
   src/marginalize_variables.cpp
@@ -139,6 +140,32 @@ if(CATKIN_ENABLE_TESTING)
       CXX_STANDARD_REQUIRED YES
   )
 
+  # Absolute Orientation 2D Stamped Constraint Tests
+  catkin_add_gtest(test_absolute_orientation_2d_stamped_constraint
+    test/test_absolute_orientation_2d_stamped_constraint.cpp
+  )
+  add_dependencies(test_absolute_orientation_2d_stamped_constraint
+    ${catkin_EXPORTED_TARGETS}
+  )
+  target_include_directories(test_absolute_orientation_2d_stamped_constraint
+    PRIVATE
+      include
+      ${catkin_INCLUDE_DIRS}
+      ${CERES_INCLUDE_DIRS}
+      ${EIGEN3_INCLUDE_DIRS}
+  )
+  target_link_libraries(test_absolute_orientation_2d_stamped_constraint
+    ${PROJECT_NAME}
+    ${catkin_LIBRARIES}
+    ${CERES_LIBRARIES}
+    ${EIGEN3_LIBRARIES}
+  )
+  set_target_properties(test_absolute_orientation_2d_stamped_constraint
+    PROPERTIES
+      CXX_STANDARD 17
+      CXX_STANDARD_REQUIRED YES
+  )
+
   # Absolute Orientation 3D Stamped Constraint Tests
   catkin_add_gtest(test_absolute_orientation_3d_stamped_constraint
     test/test_absolute_orientation_3d_stamped_constraint.cpp
@@ -210,6 +237,30 @@ if(CATKIN_ENABLE_TESTING)
     ${CERES_LIBRARIES}
   )
   set_target_properties(test_absolute_pose_2d_stamped_constraint
+    PROPERTIES
+      CXX_STANDARD 17
+      CXX_STANDARD_REQUIRED YES
+  )
+
+  # Fixed 3D Landmark Constraint Tests
+  catkin_add_gtest(test_fixed_3d_landmark_constraint
+    test/test_fixed_3d_landmark_constraint.cpp
+  )
+  add_dependencies(test_fixed_3d_landmark_constraint
+    ${catkin_EXPORTED_TARGETS}
+  )
+  target_include_directories(test_fixed_3d_landmark_constraint
+    PRIVATE
+      include
+      ${catkin_INCLUDE_DIRS}
+      ${CERES_INCLUDE_DIRS}
+  )
+  target_link_libraries(test_fixed_3d_landmark_constraint
+    ${PROJECT_NAME}
+    ${catkin_LIBRARIES}
+    ${CERES_LIBRARIES}
+  )
+  set_target_properties(test_fixed_3d_landmark_constraint
     PROPERTIES
       CXX_STANDARD 17
       CXX_STANDARD_REQUIRED YES
