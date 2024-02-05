@@ -66,7 +66,7 @@ namespace fuse_core
  */
 class LocalParameterization : public
 #if CERES_VERSION_AT_LEAST(2, 1, 0)
-                              fuse::Manifold
+                              fuse_core::Manifold
 #else
                               ceres::LocalParameterization
 #endif

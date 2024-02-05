@@ -73,7 +73,7 @@ public:
    * @return True if successful, false otherwise
    */
   virtual bool Plus(const double *x, const double *delta,
-                    double *x_plus_delta) const override = 0;
+                    double *x_plus_delta) const = 0;
 
   /**
    * @brief The jacobian of Plus(x, delta) w.r.t delta at delta = 0.
@@ -84,7 +84,7 @@ public:
    * @return True if successful, false otherwise
    */
   virtual bool ComputeJacobian(const double *x,
-                               double *jacobian) const override = 0;
+                               double *jacobian) const = 0;
 
   /**
    * @brief Generalization of the subtraction operation
@@ -102,7 +102,7 @@ public:
    * @return True if successful, false otherwise
    */
   virtual bool Minus(const double *x2, const double *x1,
-                     double *x2_minus_x1) const override = 0;
+                     double *x2_minus_x1) const = 0;
 
   /**
    * @brief The jacobian of Minus(x1, x2) w.r.t x2 at x1 == x2 == x
@@ -114,23 +114,23 @@ public:
    * @return True if successful, false otherwise
    */
   virtual bool ComputeMinusJacobian(const double *x,
-                                    double *jacobian) const override = 0;
+                                    double *jacobian) const = 0;
 
   // Size of x.
-  virtual int GlobalSize() const override = 0;
+  virtual int GlobalSize() const = 0;
   // Size of delta.
-  virtual int LocalSize() const override = 0;
+  virtual int LocalSize() const = 0;
 
 protected:
   /// Equivalent to \p GlobalSize()
   int AmbientSize() const override { return GlobalSize(); }
 
   /// Equivalent to \p LocalSize()
-  int TangentSize() const override { return TangetSize(); }
+  int TangentSize() const override { return LocalSize(); }
 
   /// Equivalent to \p ComputeJacobian()
   bool PlusJacobian(const double *x, double *jacobian) const override {
-    return ComputeJacobian(c, jacobian);
+    return ComputeJacobian(x, jacobian);
   }
 
   /// Equivalent to \p ComputeMinusJacobian()
