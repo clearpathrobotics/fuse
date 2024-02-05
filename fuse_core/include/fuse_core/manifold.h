@@ -1,7 +1,7 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2019, Locus Robotics
+ *  Copyright (c) 2024, Clearpath Robotics
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -121,7 +121,6 @@ public:
   // Size of delta.
   virtual int LocalSize() const = 0;
 
-protected:
   /// Equivalent to \p GlobalSize()
   int AmbientSize() const override { return GlobalSize(); }
 
