@@ -53,8 +53,7 @@ namespace fuse_core {
 /**
  * @brief The Manifold interface definition.
  *
- * This class extends the Ceres Manifold class but adds methods to match the
- * fuse::LocalParameterization API
+ * This class extends the Ceres Manifold class
  *
  * See the Ceres documentation for more details.
  * http://ceres-solver.org/nnls_modeling.html#manifold

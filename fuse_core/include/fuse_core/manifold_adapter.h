@@ -44,6 +44,14 @@
 
 namespace fuse_core {
 
+/**
+ * @brief The ManifoldAdapter class takes in the old fuse LocalParameterization and implements the new Manifold API
+ *
+ * This class extends the Fuse Manifold class but adds methods to match the
+ *
+ * See the Ceres documentation for more details.
+ * http://ceres-solver.org/nnls_modeling.html#manifold
+ */
 class ManifoldAdapter : public fuse_core::Manifold {
 public:
   ManifoldAdapter(LocalParameterization *local_parameterization)
