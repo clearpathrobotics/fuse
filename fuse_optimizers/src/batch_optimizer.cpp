@@ -74,6 +74,7 @@ BatchOptimizer::BatchOptimizer(
     ros::names::resolve(params_.reset_service),
     &BatchOptimizer::resetServiceCallback,
     this);
+  std::cout << ros::this_node::getNamespace() << std::endl;
 }
 
 BatchOptimizer::~BatchOptimizer()
