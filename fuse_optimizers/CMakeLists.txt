@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(fuse_optimizers)
 
 set(build_depends
+  cpr_scalopus
   diagnostic_updater
   fuse_constraints
   fuse_core

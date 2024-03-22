@@ -4,6 +4,7 @@ project(fuse_models)
 find_package(
   catkin REQUIRED
   COMPONENTS
+    cpr_scalopus
     fuse_constraints
     fuse_core
     fuse_graphs
@@ -50,6 +51,7 @@ catkin_package(
   LIBRARIES
     ${PROJECT_NAME}
   CATKIN_DEPENDS
+    cpr_scalopus
     fuse_constraints
     fuse_core
     fuse_graphs

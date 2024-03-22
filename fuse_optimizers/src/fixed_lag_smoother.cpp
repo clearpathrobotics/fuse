@@ -40,6 +40,8 @@
 #include <fuse_optimizers/optimizer.h>
 #include <ros/ros.h>
 
+#include <cpr_scalopus/common.h>
+
 #include <algorithm>
 #include <iterator>
 #include <mutex>
@@ -161,6 +163,8 @@ void FixedLagSmoother::postprocessMarginalization(const fuse_core::Transaction& 
 
 void FixedLagSmoother::optimizationLoop()
 {
+  TRACE_THREAD_NAME("Optimization Loop");
+
   auto exit_wait_condition = [this]()
   {
     return this->optimization_request_ || !this->optimization_running_ || !ros::ok();
@@ -183,6 +187,8 @@ void FixedLagSmoother::optimizationLoop()
     }
     // Optimize
     {
+      TRACE_SCOPE_RAII("Optimize");
+
       std::lock_guard<std::mutex> lock(optimization_mutex_);
       // Apply motion models
       auto new_transaction = fuse_core::Transaction::make_shared();
@@ -291,6 +297,8 @@ void FixedLagSmoother::optimizerTimerCallback(const ros::TimerEvent& event)
 
 void FixedLagSmoother::processQueue(fuse_core::Transaction& transaction, const ros::Time& lag_expiration)
 {
+  TRACE_PRETTY_FUNCTION();
+
   // We need to get the pending transactions from the queue
   std::lock_guard<std::mutex> pending_transactions_lock(pending_transactions_mutex_);
 

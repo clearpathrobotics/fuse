@@ -47,6 +47,8 @@
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_listener.h>
 
+#include <cpr_scalopus/common.h>
+
 #include <algorithm>
 #include <memory>
 #include <mutex>
@@ -71,6 +73,8 @@ Odometry2DPublisher::Odometry2DPublisher() :
 
 void Odometry2DPublisher::onInit()
 {
+  TRACE_PRETTY_FUNCTION();
+
   // Read settings from the parameter sever
   device_id_ = fuse_variables::loadDeviceId(private_node_handle_);
 
@@ -102,6 +106,8 @@ void Odometry2DPublisher::notifyCallback(
   fuse_core::Transaction::ConstSharedPtr transaction,
   fuse_core::Graph::ConstSharedPtr graph)
 {
+  TRACE_PRETTY_FUNCTION();
+
   // Find the most recent common timestamp
   const auto latest_stamp = synchronizer_.findLatestCommonStamp(*transaction, *graph);
   if (latest_stamp == Synchronizer::TIME_ZERO)
@@ -203,6 +209,8 @@ void Odometry2DPublisher::notifyCallback(
       }
       catch (const std::exception& e)
       {
+        TRACE_MARK_EVENT_THREAD("Error computing covariance.");
+
         ROS_WARN_STREAM("An error occurred computing the covariance information for " << latest_stamp << ". "
                         "The covariance will be set to zero.\n" << e.what());
         std::fill(odom_output.pose.covariance.begin(), odom_output.pose.covariance.end(), 0.0);
@@ -237,6 +245,9 @@ void Odometry2DPublisher::notifyCallback(
 
 void Odometry2DPublisher::onStart()
 {
+  TRACE_THREAD_NAME(name_ + " Spinner");
+  TRACE_PRETTY_FUNCTION();
+
   synchronizer_ = Synchronizer(device_id_);
   latest_stamp_ = latest_covariance_stamp_ = Synchronizer::TIME_ZERO;
   latest_covariance_valid_ = false;
@@ -248,6 +259,8 @@ void Odometry2DPublisher::onStart()
 
 void Odometry2DPublisher::onStop()
 {
+  TRACE_PRETTY_FUNCTION();
+
   publish_timer_.stop();
 }
 
@@ -319,6 +332,9 @@ bool Odometry2DPublisher::getState(
 
 void Odometry2DPublisher::publishTimerCallback(const ros::TimerEvent& event)
 {
+  TRACE_THREAD_NAME(name_ + " Publisher");
+  TRACE_PRETTY_FUNCTION();
+
   ros::Time latest_stamp;
   ros::Time latest_covariance_stamp;
   bool latest_covariance_valid;
@@ -493,6 +509,8 @@ void Odometry2DPublisher::publishTimerCallback(const ros::TimerEvent& event)
     {
       try
       {
+        TRACE_SCOPE_RAII("TF Transform");
+
         auto base_to_odom = tf_buffer_->lookupTransform(
           params_.base_link_frame_id,
           params_.odom_frame_id,

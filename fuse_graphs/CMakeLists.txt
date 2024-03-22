@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(fuse_graphs)
 
 set(build_depends
+  cpr_scalopus
   fuse_core
   pluginlib
   roscpp
