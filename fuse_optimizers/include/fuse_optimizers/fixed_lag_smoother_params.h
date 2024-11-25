@@ -56,6 +56,11 @@ struct FixedLagSmootherParams
 {
 public:
   /**
+   * @brief If true, the state estimator will not start until the start or reset service is called
+   */
+  bool disabled_at_startup { false };
+
+  /**
    * @brief The duration of the smoothing window in seconds
    */
   ros::Duration lag_duration { 5.0 };
@@ -73,6 +78,21 @@ public:
    * @brief The topic name of the advertised reset service
    */
   std::string reset_service { "~reset" };
+
+  /**
+   * @brief The topic name of the advertised stop service
+   */
+  std::string stop_service { "~stop" };
+
+  /**
+   * @brief The topic name of the advertised restart service
+   */
+  std::string start_service { "~start" };
+
+  /**
+   * @brief The topic name of the started/stopped status topic
+   */
+  std::string status_topic { "~running" };
 
   /**
    * @brief The maximum time to wait for motion models to be generated for a received transaction.
@@ -95,6 +115,8 @@ public:
   void loadFromROS(const ros::NodeHandle& nh)
   {
     // Read settings from the parameter server
+    nh.getParam("disabled_at_startup", disabled_at_startup);
+
     fuse_core::getPositiveParam(nh, "lag_duration", lag_duration);
 
     if (nh.hasParam("optimization_frequency"))
@@ -109,6 +131,9 @@ public:
     }
 
     nh.getParam("reset_service", reset_service);
+    nh.getParam("stop_service", stop_service);
+    nh.getParam("start_service", start_service);
+    nh.getParam("status_topic", status_topic);
 
     fuse_core::getPositiveParam(nh, "transaction_timeout", transaction_timeout);
 

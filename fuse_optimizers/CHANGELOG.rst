@@ -43,6 +43,29 @@ Changelog for package fuse_optimizers
 * [RST-3451] Cleaned up condition variable usage
 * Contributors: Enrique Fernandez Perdomo, Gary Servin, Stephen Williams, Tom Moore
 
+0.10.0 (2024-09-16)
+-------------------
+* [RST-10727] Publish the start/stop status of the fixed-lag smoother (#375)
+  * Add a topic that reports when the optimizer is started or stopped
+* [RST-10642] Allow the optimizer to remain disabled at startup (#374)
+  * Add ability to leave the fixed-lag smoother stopped on construction
+  * Don't allow a running instance to be started. Instance must be stopped first.
+* RST-10147 - optimizer logging changes (#372)
+  * Adding some logging to fuse
+  * Adding same logs to batch optimizer
+* Contributors: David Murdoch, Stephen Williams
+
+0.9.0 (2024-06-17)
+------------------
+* Adding stop and start functionality to the fixed lag smoother (#362)
+  * Adding a pause
+  * Pr feedback
+  * Pr Feedback:Adding start stop to batch optimizer
+  * Removing a debug log I forgot about
+  * Fixing lint errors
+* Add a reset service to the batch optimizer, similar to the fixed-lag smoother (#360)
+* Contributors: David Murdoch, Jake McLaughlin
+
 0.8.0 (2024-02-02)
 ------------------
 * 0.7.0

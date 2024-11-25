@@ -10,6 +10,7 @@ set(build_depends
   fuse_variables
   pluginlib
   roscpp
+  std_msgs
   std_srvs
 )
 

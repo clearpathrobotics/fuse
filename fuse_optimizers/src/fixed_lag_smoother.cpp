@@ -39,6 +39,7 @@
 #include <fuse_core/uuid.h>
 #include <fuse_optimizers/optimizer.h>
 #include <ros/ros.h>
+#include <std_msgs/Bool.h>
 
 #include <cpr_scalopus/common.h>
 
@@ -92,9 +93,6 @@ FixedLagSmoother::FixedLagSmoother(
 {
   params_.loadFromROS(private_node_handle);
 
-  // Test for auto-start
-  autostart();
-
   // Start the optimization thread
   optimization_thread_ = std::thread(&FixedLagSmoother::optimizationLoop, this);
 
@@ -109,6 +107,27 @@ FixedLagSmoother::FixedLagSmoother(
     ros::names::resolve(params_.reset_service),
     &FixedLagSmoother::resetServiceCallback,
     this);
+
+  stop_service_server_ = node_handle_.advertiseService(
+    ros::names::resolve(params_.stop_service),
+    &FixedLagSmoother::stopServiceCallback,
+    this);
+
+  start_service_server_ = node_handle_.advertiseService(
+    ros::names::resolve(params_.start_service),
+    &FixedLagSmoother::startServiceCallback,
+    this);
+
+  status_publisher_ = node_handle_.advertise<std_msgs::Bool>(
+    ros::names::resolve(params_.status_topic),
+    1,
+    true);
+  publishStatus(false);
+
+  if (!params_.disabled_at_startup)
+  {
+    start();
+  }
 }
 
 FixedLagSmoother::~FixedLagSmoother()
@@ -133,6 +152,13 @@ void FixedLagSmoother::autostart()
     setStartTime(ros::Time(0, 0));
     ROS_INFO_STREAM("No ignition sensors were specified. Optimization will begin immediately.");
   }
+}
+
+void FixedLagSmoother::publishStatus(const bool running)
+{
+  auto status = std_msgs::Bool();
+  status.data = running;
+  status_publisher_.publish(status);
 }
 
 void FixedLagSmoother::preprocessMarginalization(const fuse_core::Transaction& new_transaction)
@@ -434,6 +460,46 @@ void FixedLagSmoother::processQueue(fuse_core::Transaction& transaction, const r
 
 bool FixedLagSmoother::resetServiceCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
 {
+  stop();
+  start();
+
+  return true;
+}
+
+bool FixedLagSmoother::stopServiceCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
+{
+  stop();
+  return true;
+}
+
+bool FixedLagSmoother::startServiceCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)
+{
+  start();
+  return true;
+}
+
+void FixedLagSmoother::start()
+{
+  if (started_)
+  {
+    ROS_WARN_STREAM("Requested to start the optimizer while it is already running. Ignoring request.");
+    return;
+  }
+
+  ROS_INFO_STREAM("Starting optimizer.");
+  // Tell all the plugins to start
+  startPlugins();
+  // Test for auto-start
+  autostart();
+  // Update status topic
+  publishStatus(true);
+
+  ROS_INFO_STREAM("Started optimizer.");
+}
+
+void FixedLagSmoother::stop()
+{
+  ROS_INFO_STREAM("Stopping optimizer.");
   // Tell all the plugins to stop
   stopPlugins();
   // Reset the optimizer state
@@ -460,12 +526,10 @@ bool FixedLagSmoother::resetServiceCallback(std_srvs::Empty::Request&, std_srvs:
     timestamp_tracking_.clear();
     lag_expiration_ = ros::Time(0, 0);
   }
-  // Tell all the plugins to start
-  startPlugins();
-  // Test for auto-start
-  autostart();
+  // Update status topic
+  publishStatus(false);
 
-  return true;
+  ROS_INFO_STREAM("Stopped Optimizer.");
 }
 
 void FixedLagSmoother::transactionCallback(
