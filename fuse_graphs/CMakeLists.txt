@@ -75,7 +75,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED YES
 )
 
@@ -137,7 +137,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_hash_graph
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -163,7 +163,7 @@ if(CATKIN_ENABLE_TESTING)
     )
     set_target_properties(benchmark_create_problem
       PROPERTIES
-        CXX_STANDARD 17
+        CXX_STANDARD 20
         CXX_STANDARD_REQUIRED YES
     )
   endif()
