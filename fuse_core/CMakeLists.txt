@@ -86,7 +86,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED YES
 )
 
@@ -111,7 +111,7 @@ target_link_libraries(fuse_echo
 )
 set_target_properties(fuse_echo
   PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED YES
 )
 
@@ -172,7 +172,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_async_motion_model
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -198,7 +198,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_async_publisher
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -224,7 +224,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_async_sensor_model
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -249,7 +249,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_callback_wrapper
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -274,7 +274,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_constraint
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -299,7 +299,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_eigen
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -316,7 +316,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_local_parameterization
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -341,7 +341,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_loss
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -365,7 +365,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_message_buffer
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -390,7 +390,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_timestamp_manager
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -416,7 +416,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_transaction
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -441,7 +441,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_parameter
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -463,7 +463,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_throttled_callback
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -487,7 +487,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_util
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -512,7 +512,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_uuid
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 
@@ -538,7 +538,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   set_target_properties(test_variable
     PROPERTIES
-      CXX_STANDARD 17
+      CXX_STANDARD 20
       CXX_STANDARD_REQUIRED YES
   )
 endif()
