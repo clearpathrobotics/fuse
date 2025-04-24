@@ -41,6 +41,8 @@
 #include <pluginlib/class_list_macros.hpp>
 #include <ros/ros.h>
 
+#include <memory>
+
 
 // Register this sensor model with ROS as a plugin.
 PLUGINLIB_EXPORT_CLASS(fuse_models::Acceleration2D, fuse_core::SensorModel)
@@ -64,6 +66,7 @@ void Acceleration2D::onInit()
 
   throttled_callback_.setThrottlePeriod(params_.throttle_period);
   throttled_callback_.setUseWallTime(params_.throttle_use_wall_time);
+  throttled_callback_.setUseHeaderTimestamps(params_.throttle_use_header_timestamps);
 
   if (params_.indices.empty())
   {

@@ -70,6 +70,7 @@ void Imu2D::onInit()
 
   throttled_callback_.setThrottlePeriod(params_.throttle_period);
   throttled_callback_.setUseWallTime(params_.throttle_use_wall_time);
+  throttled_callback_.setUseHeaderTimestamps(params_.throttle_use_header_timestamps);
 
   if (params_.orientation_indices.empty() &&
       params_.linear_acceleration_indices.empty() &&
