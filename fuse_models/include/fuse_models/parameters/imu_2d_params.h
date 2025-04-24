@@ -80,6 +80,7 @@ struct Imu2DParams : public ParameterBase
 
       fuse_core::getPositiveParam(nh, "throttle_period", throttle_period, false);
       nh.getParam("throttle_use_wall_time", throttle_use_wall_time);
+      nh.getParam("throttle_use_header_timestamps", throttle_use_header_timestamps);
 
       nh.getParam("remove_gravitational_acceleration", remove_gravitational_acceleration);
       nh.getParam("gravitational_acceleration", gravitational_acceleration);
@@ -122,6 +123,7 @@ struct Imu2DParams : public ParameterBase
     ros::Duration tf_timeout { 0.0 };  //!< The maximum time to wait for a transform to become available
     ros::Duration throttle_period { 0.0 };  //!< The throttle period duration in seconds
     bool throttle_use_wall_time { false };  //!< Whether to throttle using ros::WallTime or not
+    bool throttle_use_header_timestamps { false };  //!< Whether to throttle using header timestamps
     double gravitational_acceleration { 9.80665 };
     std::string acceleration_target_frame {};
     std::string orientation_target_frame {};
