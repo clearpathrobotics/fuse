@@ -169,7 +169,7 @@ void BatchOptimizer::optimizationLoop()
         combined_transaction_ = fuse_core::Transaction::make_shared();
       }
       TRACE_SCOPE_RAII("Optimize");
-      
+
       // Update the graph
       graph_->update(*const_transaction);
       // Optimize the entire graph
