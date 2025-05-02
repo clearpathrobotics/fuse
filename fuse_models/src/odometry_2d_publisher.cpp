@@ -505,7 +505,7 @@ void Odometry2DPublisher::publishTimerCallback(const ros::TimerEvent& event)
     trans.transform.translation.z = odom_output.pose.pose.position.z;
     trans.transform.rotation = tf2::toMsg(pose.getRotation());
 
-    if (!params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
+    if (!params_.odom_frame_id.empty() && !params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
     {
       try
       {
