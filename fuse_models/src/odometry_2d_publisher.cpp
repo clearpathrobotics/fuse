@@ -80,7 +80,7 @@ void Odometry2DPublisher::onInit()
 
   params_.loadFromROS(private_node_handle_);
 
-  if (!params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
+  if (!params_.odom_frame_id.empty() && !params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
   {
     tf_buffer_ = std::make_unique<tf2_ros::Buffer>(params_.tf_cache_time);
     tf_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf_buffer_, node_handle_);
@@ -505,7 +505,7 @@ void Odometry2DPublisher::publishTimerCallback(const ros::TimerEvent& event)
     trans.transform.translation.z = odom_output.pose.pose.position.z;
     trans.transform.rotation = tf2::toMsg(pose.getRotation());
 
-    if (!params_.odom_frame_id.empty() && !params_.invert_tf && params_.world_frame_id == params_.map_frame_id)
+    if (tf_buffer_)
     {
       try
       {
