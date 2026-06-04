@@ -54,7 +54,7 @@ namespace uuid
 {
   using boost::uuids::to_string;
   using hash = boost::hash<UUID>;
-  constexpr UUID NIL = {{0}};
+  const UUID NIL = {{0}};
 
   /**
    * @brief Convert a string representation of the UUID into a UUID variable
@@ -182,22 +182,5 @@ namespace uuid
 }  // namespace uuid
 
 }  // namespace fuse_core
-
-namespace std
-{
-
-/**
- * @brief Define a hash specialization for the UUID to make it easier to use in unordered_maps and unordered_sets
- */
-template <>
-struct hash<fuse_core::UUID>
-{
-  size_t operator()(const fuse_core::UUID& id) const
-  {
-    return boost::uuids::hash_value(id);
-  }
-};
-
-}  // namespace std
 
 #endif  // FUSE_CORE_UUID_H
