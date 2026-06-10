@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Boost REQUIRED)
+find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
@@ -99,6 +100,7 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   ${QT_LIBRARIES}
+  Ceres::ceres
 )
 # CXX_STANDARD 20 fails if rviz uses OGRE 1.10.11
 # ogre-1.10.11/include/OGRE/OgreMemorySTLAllocator.h:126:44:i

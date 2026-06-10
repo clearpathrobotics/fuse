@@ -17,6 +17,8 @@ find_package(catkin REQUIRED COMPONENTS
   ${build_depends}
 )
 
+find_package(Ceres REQUIRED)
+
 catkin_package(
   INCLUDE_DIRS
     include
@@ -61,6 +63,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  Ceres::ceres
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES

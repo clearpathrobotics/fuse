@@ -125,7 +125,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
   ${EIGEN3_LIBRARIES}
   ${SUITESPARSE_LIBRARIES}
 )
