@@ -64,7 +64,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
@@ -121,7 +121,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_acceleration_angular_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_acceleration_angular_2d_stamped
     PROPERTIES
@@ -145,7 +145,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_acceleration_angular_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_acceleration_angular_3d_stamped
     PROPERTIES
@@ -169,7 +169,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_acceleration_linear_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_acceleration_linear_2d_stamped
     PROPERTIES
@@ -193,7 +193,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_acceleration_linear_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_acceleration_linear_3d_stamped
     PROPERTIES
@@ -217,7 +217,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_pinhole_camera
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_pinhole_camera
     PROPERTIES
@@ -241,7 +241,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_pinhole_camera_fixed
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
   )
   set_target_properties(test_pinhole_camera_fixed
   PROPERTIES
@@ -312,7 +312,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_orientation_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_orientation_2d_stamped
     PROPERTIES
@@ -336,7 +336,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_orientation_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_orientation_3d_stamped
     PROPERTIES
@@ -360,7 +360,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_point_2d_fixed_landmark
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_point_2d_fixed_landmark
     PROPERTIES
@@ -384,7 +384,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_point_2d_landmark
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_point_2d_landmark
     PROPERTIES
@@ -408,7 +408,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_point_3d_fixed_landmark
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_point_3d_fixed_landmark
     PROPERTIES
@@ -432,7 +432,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_point_3d_landmark
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_point_3d_landmark
     PROPERTIES
@@ -456,7 +456,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_position_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_position_2d_stamped
     PROPERTIES
@@ -480,7 +480,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_position_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_position_3d_stamped
     PROPERTIES
@@ -504,7 +504,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_velocity_angular_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_velocity_angular_2d_stamped
     PROPERTIES
@@ -528,7 +528,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_velocity_angular_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_velocity_angular_3d_stamped
     PROPERTIES
@@ -552,7 +552,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_velocity_linear_2d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_velocity_linear_2d_stamped
     PROPERTIES
@@ -576,7 +576,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_velocity_linear_3d_stamped
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_velocity_linear_3d_stamped
     PROPERTIES

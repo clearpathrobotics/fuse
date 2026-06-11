@@ -120,7 +120,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
@@ -171,7 +171,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_unicycle_2d
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_unicycle_2d
     PROPERTIES
@@ -187,7 +187,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_unicycle_2d_predict
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_unicycle_2d_predict
     PROPERTIES
@@ -204,7 +204,7 @@ if(CATKIN_ENABLE_TESTING)
     test_unicycle_2d_state_cost_function
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_unicycle_2d_state_cost_function
     PROPERTIES
@@ -282,7 +282,7 @@ if(CATKIN_ENABLE_TESTING)
         benchmark
         ${PROJECT_NAME}
         ${catkin_LIBRARIES}
-        ${CERES_LIBRARIES}
+        Ceres::ceres
       )
       set_target_properties(benchmark_unicycle_2d_state_cost_function
         PROPERTIES
