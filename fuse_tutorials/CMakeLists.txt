@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
 )
 
+find_package(Ceres REQUIRED)
+
 catkin_package(
   INCLUDE_DIRS
     include
@@ -44,9 +46,11 @@ target_include_directories(${PROJECT_NAME}
   PUBLIC
     include
     ${catkin_INCLUDE_DIRS}
+    ${CERES_INCLUDE_DIRS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  Ceres::ceres
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
