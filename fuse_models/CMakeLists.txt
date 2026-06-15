@@ -122,6 +122,10 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   Ceres::ceres
 )
+target_compile_definitions(${PROJECT_NAME}
+  PUBLIC
+    GLOG_USE_GLOG_EXPORT
+)
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
     CXX_STANDARD 20
