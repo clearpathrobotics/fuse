@@ -14,8 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost REQUIRED COMPONENTS serialization)
 find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(libglog REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS
@@ -28,7 +26,6 @@ catkin_package(
     Boost
     CERES
     EIGEN3
-    GLOG
 )
 
 ###########
@@ -76,7 +73,6 @@ target_include_directories(${PROJECT_NAME}
     ${catkin_INCLUDE_DIRS}
     ${CERES_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIRS}
-    ${GLOG_INCLUDE_DIRS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${Boost_LIBRARIES}
@@ -436,6 +432,7 @@ if(CATKIN_ENABLE_TESTING)
       ${EIGEN3_INCLUDE_DIRS}
   )
   target_link_libraries(test_parameter
+    ${PROJECT_NAME}
     ${catkin_LIBRARIES}
   )
   set_target_properties(test_parameter

@@ -172,6 +172,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   target_link_libraries(test_stamped_variable_synchronizer
     ${catkin_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_stamped_variable_synchronizer
     PROPERTIES
