@@ -47,79 +47,37 @@ TEST(Stamped, LoadDeviceId)
   {
     ros::NodeHandle node_handle("/id1");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
     ros::NodeHandle node_handle("/id2");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
     ros::NodeHandle node_handle("/id3");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
     ros::NodeHandle node_handle("/id4");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
     ros::NodeHandle node_handle("/id5");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
     ros::NodeHandle node_handle("/id6");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x01, 0x23, 0x45, 0x67,
-      0x89, 0xAB,
-      0xCD, 0xEF,
-      0x01, 0x23,
-      0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("01234567-89ab-cdef-0123-456789abcdef");
     EXPECT_EQ(expected, actual);
   }
   {
@@ -129,14 +87,7 @@ TEST(Stamped, LoadDeviceId)
   {
     ros::NodeHandle node_handle("/name");
     fuse_core::UUID actual = fuse_variables::loadDeviceId(node_handle);
-    fuse_core::UUID expected =
-    {{
-      0x5B, 0x23, 0x43, 0x6D,
-      0x8E, 0x7C,
-      0x51, 0xCF,
-      0x81, 0x62,
-      0x5C, 0xD5, 0xFD, 0x37, 0x9E, 0xCF
-    }};
+    fuse_core::UUID expected = fuse_core::uuid::from_string("5b23436d-8e7c-51cf-8162-5cd5fd379ecf");
     EXPECT_EQ(expected, actual);
   }
   {
