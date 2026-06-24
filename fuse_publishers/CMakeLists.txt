@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_publishers)
 
 set(build_depends
@@ -16,6 +16,8 @@ set(build_depends
 find_package(catkin REQUIRED COMPONENTS
   ${build_depends}
 )
+
+find_package(Ceres REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS
@@ -61,6 +63,11 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  Ceres::ceres
+)
+target_compile_definitions(${PROJECT_NAME}
+  PUBLIC
+    GLOG_USE_GLOG_EXPORT
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
@@ -169,6 +176,7 @@ if(CATKIN_ENABLE_TESTING)
   )
   target_link_libraries(test_stamped_variable_synchronizer
     ${catkin_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_stamped_variable_synchronizer
     PROPERTIES

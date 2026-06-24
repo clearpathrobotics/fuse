@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_tutorials)
 
 find_package(catkin REQUIRED COMPONENTS
@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
 )
+
+find_package(Ceres REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS
@@ -44,9 +46,15 @@ target_include_directories(${PROJECT_NAME}
   PUBLIC
     include
     ${catkin_INCLUDE_DIRS}
+    ${CERES_INCLUDE_DIRS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  Ceres::ceres
+)
+target_compile_definitions(${PROJECT_NAME}
+  PUBLIC
+    GLOG_USE_GLOG_EXPORT
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES

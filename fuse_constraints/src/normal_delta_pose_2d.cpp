@@ -35,7 +35,6 @@
 #include <fuse_core/util.h>
 
 #include <Eigen/Core>
-#include <glog/logging.h>
 
 
 namespace fuse_constraints

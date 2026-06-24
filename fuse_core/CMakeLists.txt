@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_core)
 
 set(build_depends
@@ -14,8 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost REQUIRED COMPONENTS serialization)
 find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(libglog REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS
@@ -28,7 +26,6 @@ catkin_package(
     Boost
     CERES
     EIGEN3
-    GLOG
 )
 
 ###########
@@ -76,13 +73,15 @@ target_include_directories(${PROJECT_NAME}
     ${catkin_INCLUDE_DIRS}
     ${CERES_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIRS}
-    ${GLOG_INCLUDE_DIRS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${Boost_LIBRARIES}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
-  ${GLOG_LIBRARIES}
+  Ceres::ceres
+)
+target_compile_definitions(${PROJECT_NAME}
+  PUBLIC
+    GLOG_USE_GLOG_EXPORT
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
@@ -437,6 +436,7 @@ if(CATKIN_ENABLE_TESTING)
       ${EIGEN3_INCLUDE_DIRS}
   )
   target_link_libraries(test_parameter
+    ${PROJECT_NAME}
     ${catkin_LIBRARIES}
   )
   set_target_properties(test_parameter

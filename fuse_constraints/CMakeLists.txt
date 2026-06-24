@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_constraints)
 
 set(build_depends
@@ -125,7 +125,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
   ${EIGEN3_LIBRARIES}
   ${SUITESPARSE_LIBRARIES}
 )
@@ -184,7 +184,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_absolute_constraint
     PROPERTIES
@@ -209,7 +209,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_orientation_2d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
     ${EIGEN3_LIBRARIES}
   )
   set_target_properties(test_absolute_orientation_2d_stamped_constraint
@@ -235,7 +235,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_orientation_3d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
     ${EIGEN3_LIBRARIES}
   )
   set_target_properties(test_absolute_orientation_3d_stamped_constraint
@@ -261,7 +261,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_orientation_3d_stamped_euler_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
     ${EIGEN3_LIBRARIES}
   )
   set_target_properties(test_absolute_orientation_3d_stamped_euler_constraint
@@ -286,7 +286,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_pose_2d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_absolute_pose_2d_stamped_constraint
     PROPERTIES
@@ -310,7 +310,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_fixed_3d_landmark_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_fixed_3d_landmark_constraint
     PROPERTIES
@@ -334,7 +334,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_absolute_pose_3d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_absolute_pose_3d_stamped_constraint
     PROPERTIES
@@ -452,7 +452,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_relative_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_relative_constraint
     PROPERTIES
@@ -476,7 +476,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_relative_pose_2d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_relative_pose_2d_stamped_constraint
     PROPERTIES
@@ -500,7 +500,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_relative_pose_3d_stamped_constraint
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_relative_pose_3d_stamped_constraint
     PROPERTIES
@@ -558,7 +558,7 @@ if(CATKIN_ENABLE_TESTING)
         benchmark
         ${PROJECT_NAME}
         ${catkin_LIBRARIES}
-        ${CERES_LIBRARIES}
+        Ceres::ceres
       )
       set_target_properties(benchmark_normal_delta_pose_2d
         PROPERTIES
@@ -577,7 +577,7 @@ if(CATKIN_ENABLE_TESTING)
         benchmark
         ${PROJECT_NAME}
         ${catkin_LIBRARIES}
-        ${CERES_LIBRARIES}
+        Ceres::ceres
       )
       set_target_properties(benchmark_normal_prior_pose_2d
         PROPERTIES

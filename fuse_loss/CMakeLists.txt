@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_loss)
 
 set(build_depends
@@ -57,7 +57,11 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${CERES_LIBRARIES}
+  Ceres::ceres
+)
+target_compile_definitions(${PROJECT_NAME}
+  PUBLIC
+    GLOG_USE_GLOG_EXPORT
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
@@ -122,7 +126,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_loss_function
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_loss_function
     PROPERTIES
@@ -146,7 +150,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_composed_loss
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_composed_loss
     PROPERTIES
@@ -170,7 +174,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_huber_loss
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_huber_loss
     PROPERTIES
@@ -194,7 +198,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_tukey_loss
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_tukey_loss
     PROPERTIES
@@ -223,7 +227,7 @@ if(CATKIN_ENABLE_TESTING)
     target_link_libraries(test_qwt_loss_plot
       ${PROJECT_NAME}
       ${catkin_LIBRARIES}
-      ${CERES_LIBRARIES}
+      Ceres::ceres
       ${Qt5Core_LIBRARIES}
       ${Qt5Widgets_LIBRARIES}
       ${QWT_LIBRARIES}
@@ -256,7 +260,7 @@ if(CATKIN_ENABLE_TESTING)
   target_link_libraries(test_scaled_loss
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
-    ${CERES_LIBRARIES}
+    Ceres::ceres
   )
   set_target_properties(test_scaled_loss
     PROPERTIES

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16.3)
 project(fuse_optimizers)
 
 set(build_depends
@@ -17,6 +17,8 @@ set(build_depends
 find_package(catkin REQUIRED COMPONENTS
   ${build_depends}
 )
+
+find_package(Ceres REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS
@@ -49,6 +51,7 @@ target_include_directories(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  Ceres::ceres
 )
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
