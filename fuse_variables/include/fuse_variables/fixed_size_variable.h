@@ -63,6 +63,7 @@ class FixedSizeVariable : public fuse_core::Variable
 {
 public:
   FUSE_SMART_PTR_ALIASES_ONLY(FixedSizeVariable<N>);
+  FUSE_VARIABLE_SERIALIZE_DEFINITION(FixedSizeVariable<N>);
 
   /**
    * @brief A static version of the variable size
