@@ -39,6 +39,8 @@
 #include <boost/serialization/base_object.hpp>
 #include <gtest/gtest.h>
 
+#include <sstream>
+
 
 class TestVariable : public fuse_variables::FixedSizeVariable<2>
 {
@@ -106,6 +108,33 @@ TEST(FixedSizeVariable, Array)
   EXPECT_NO_THROW(success = success && const_variable.array().front() == 3.0);
   EXPECT_NO_THROW(success = success && const_variable.array().back() == 4.0);
   EXPECT_TRUE(success);
+}
+
+TEST(FixedSizeVariable, Serialization)
+{
+  // Create a variable of a child class and set its data
+  TestVariable expected;
+  expected.data()[0] = 1.5;
+  expected.data()[1] = -3.0;
+
+  // Serialize the variable into an archive
+  std::stringstream stream;
+  {
+    fuse_core::TextOutputArchive archive(stream);
+    expected.serialize(archive);
+  }
+
+  // Deserialize a new variable from that same stream
+  TestVariable actual;
+  ASSERT_NE(expected.uuid(), actual.uuid());
+  {
+    fuse_core::TextInputArchive archive(stream);
+    actual.deserialize(archive);
+  }
+
+  // Compare
+  EXPECT_EQ(expected.uuid(), actual.uuid());
+  EXPECT_EQ(expected.array(), actual.array());
 }
 
 int main(int argc, char **argv)
